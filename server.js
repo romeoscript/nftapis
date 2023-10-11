@@ -1,10 +1,16 @@
-const http = require("http");
-const app = require("./app");
+import express from "express";
+const app = express();
+const PORT = 5000;
+import { getNFTs } from "./routes/nft.js";
+import { registerUser } from "./routes/registerUser.js";
+import { POST } from "./routes/loginUser.js";
 
-const PORT = 5001;
+app.use(express.json());
 
-const server = http.createServer(app)
+app.get("/nft", getNFTs);
+app.post("/register", registerUser);
+app.post("/login", POST);
 
-server.listen(PORT, () => {
+app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });

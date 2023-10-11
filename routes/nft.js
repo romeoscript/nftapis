@@ -1,24 +1,20 @@
-const express = require('express');
-const axios = require('axios');
+import axios from "axios";
 
-const router = express.Router();
-
-router.get('/', async (req, res) => {
-
-  if (req.method !== 'GET') {
+export async function getNFTs(req, res) {
+  if (req.method !== "GET") {
     return res.status(405).json({ message: "Method not allowed" });
   }
 
   try {
-    const response = await axios.get('https://api.opensea.io/api/v1/assets', {
+    const response = await axios.get("https://api.opensea.io/api/v1/assets", {
       headers: {
-        'X-API-KEY': '0ade3081dbe445b99bde612a3069a364'
+        "X-API-KEY": "0ade3081dbe445b99bde612a3069a364",
       },
       params: {
-        order_direction: 'desc',
-        offset: '0',
-        limit: '200'
-      }
+        order_direction: "desc",
+        offset: "0",
+        limit: "200",
+      },
     });
 
     const seenCollections = new Set();
@@ -26,7 +22,10 @@ router.get('/', async (req, res) => {
     const otherAssets = [];
 
     for (const asset of response.data.assets) {
-      if (uniqueCollectionAssets.length < 22 && !seenCollections.has(asset.collection.slug)) {
+      if (
+        uniqueCollectionAssets.length < 22 &&
+        !seenCollections.has(asset.collection.slug)
+      ) {
         seenCollections.add(asset.collection.slug);
         uniqueCollectionAssets.push(asset);
       } else {
@@ -36,7 +35,7 @@ router.get('/', async (req, res) => {
 
     const combinedAssets = [...uniqueCollectionAssets, ...otherAssets];
 
-    const filteredData = combinedAssets.slice(0, 52).map(asset => ({
+    const filteredData = combinedAssets.slice(0, 52).map((asset) => ({
       name: asset.asset_contract.name,
       description: asset.description,
       token_id: asset.token_id,
@@ -45,11 +44,10 @@ router.get('/', async (req, res) => {
       video: asset.animation_url,
       date: asset.asset_contract.created_date,
       blockchain: asset.asset_contract.chain_identifier,
-      price: asset.asset_contract.seller_fee_basis_points * 0.0001
+      price: asset.asset_contract.seller_fee_basis_points * 0.0001,
     }));
 
     return res.status(200).json(filteredData);
-
   } catch (error) {
     let errorMessage = "Internal Server Error";
     if (error instanceof Error) {
@@ -57,10 +55,7 @@ router.get('/', async (req, res) => {
     }
     return res.status(500).json({
       message: errorMessage,
-      details: error.message || error
+      details: error.message || error,
     });
   }
-});
-
-module.exports = router
-
+}
