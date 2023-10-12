@@ -1,3 +1,8 @@
+// import pkg from 'jsonwebtoken';
+// const { Jwt } = pkg;
+import jwt from 'jsonwebtoken';
+
+
 export const authenticateUser = async (req, res) => {
     const authHeader = req.headers.authorization;
 

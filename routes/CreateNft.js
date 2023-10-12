@@ -1,12 +1,11 @@
-import dotenv from 'dotenv';
-import multer from 'multer';
-import { PrismaClient } from '@prisma/client';
-import { authenticateUser } from '../middleware/auth.js';
+import dotenv from "dotenv";
+import { PrismaClient } from "@prisma/client";
+import { authenticateUser } from "../middleware/auth.js";
+import cloudinary from "../lib/cloudinary.js";
+import fs from 'fs';
+import upload from "../middleware/upload.js";
 
 const db = new PrismaClient();
-
-// Multer Configuration
-const upload = multer({ storage: multer.memoryStorage() });
 
 // Load environment variables
 dotenv.config();
@@ -15,11 +14,10 @@ export async function createNft(req, res) {
   try {
     // Authenticate the user
     await authenticateUser(req, res);
-
+ 
     // Apply multer middleware to handle file uploads
-    const uploadMiddleware = upload.single('image'); 
     await new Promise((resolve, reject) => {
-      uploadMiddleware(req, res, (error) => {
+      upload.single("image")(req, res, (error) => {
         if (error) {
           reject(error);
         } else {
@@ -27,38 +25,36 @@ export async function createNft(req, res) {
         }
       });
     });
-    
+ 
     if (!req.file) {
-      return res.status(400).json({ message: 'No image uploaded.' });
+      return res.status(400).json({ message: "No image uploaded." });
     }
 
     const body = req.body;
 
     // If no user is attached to the request, it means authentication failed
     if (!req.user || !req.user.userId) {
-      return res.status(401).json({ message: 'Authentication failed.' });
+      return res.status(401).json({ message: "Authentication failed." });
     }
 
     const { name, description, blockchain } = body;
 
     if (!name || !description || !blockchain) {
-      return res.status(400).json({ message: 'Missing required fields.' });
+      return res.status(400).json({ message: "Missing required fields." });
     }
 
     const result = await new Promise((resolve, reject) => {
-      const streamLoad = cloudinary.uploader.upload_stream(
-        { folder: 'NftImages' },
-        (error, result) => {
-          if (result) {
-            resolve(result);
-          } else {
-            reject(error);
-          }
+      cloudinary.uploader.upload(req.file.path, { folder: "NftImages" }, (error, result) => {
+        if (error) {
+          reject(error);
+        } else {
+          resolve(result);
         }
-      );
-
-      req.file.stream.pipe(streamLoad);
+      });
     });
+
+    // Delete the temporarily stored file
+    fs.unlinkSync(req.file.path);
 
     // Create the NFT post
     const nftpost = await db.nftpost.create({
@@ -73,13 +69,13 @@ export async function createNft(req, res) {
 
     return res.status(201).json(nftpost);
   } catch (error) {
-    let errorMessage = 'Internal Server Error';
+    let errorMessage = "Internal Server Error";
     if (error instanceof Error) {
       errorMessage = error.message;
     }
     return res.status(500).json({
       message: errorMessage,
-      details: error instanceof Error ? error.message : error
+      details: error instanceof Error ? error.message : error,
     });
   }
 }
