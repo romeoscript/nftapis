@@ -46,6 +46,7 @@ export async function createNft(req, res) {
     const result = await new Promise((resolve, reject) => {
       cloudinary.uploader.upload(req.file.path, { folder: "NftImages" }, (error, result) => {
         if (error) {
+            console.error("Cloudinary Error:", error); 
           reject(error);
         } else {
           resolve(result);
@@ -54,7 +55,7 @@ export async function createNft(req, res) {
     });
 
     // Delete the temporarily stored file
-    fs.unlinkSync(req.file.path);
+    //fs.unlinkSync(req.file.path);
 
     // Create the NFT post
     const nftpost = await db.nftpost.create({
