@@ -7,7 +7,8 @@ const db = new PrismaClient();
 
 dotenv.config;
 export async function buy(req, res) {
-  const tokenId = "1846"; // Assuming token ID is passed as a query parameter
+   
+  const tokenId = req.params.tokenid; // Assuming token ID is passed as a query parameter
 
   if (!tokenId) {
     return res.status(400).json({ message: "Token ID is required" });
