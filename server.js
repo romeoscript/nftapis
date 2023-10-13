@@ -7,6 +7,7 @@ import { registerUser } from "./routes/registerUser.js";
 import { POST } from "./routes/loginUser.js";
 import { createNft } from "./routes/CreateNft.js";
 import { getUserNFTs } from "./routes/getusernft.js";
+import { buy } from "./routes/Buy.js";
 
 
 app.use(express.json());
@@ -14,6 +15,7 @@ app.use(cors()); // <-- use the CORS middleware here
 
 app.get("/nft", getNFTs);
 app.get("/mynfts", getUserNFTs)
+app.get("/buy", buy)
 
 
 app.post("/register", registerUser);
