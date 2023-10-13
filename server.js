@@ -15,7 +15,7 @@ app.use(cors()); // <-- use the CORS middleware here
 
 app.get("/nft", getNFTs);
 app.get("/mynfts", getUserNFTs)
-app.get("/buy", buy)
+app.post("/buy", buy)
 
 
 app.post("/register", registerUser);
