@@ -1,5 +1,5 @@
 import express from "express";
-import cors from 'cors';
+import cors from "cors";
 import swaggerJsDoc from "swagger-jsdoc";
 import swaggerUi from "swagger-ui-express";
 
@@ -25,6 +25,7 @@ const swaggerOptions = {
       {
         url: "http://localhost:5000",
       },
+      { url: "https://nftapis.onrender.com/" },
     ],
   },
   apis: ["./routes/*.js"], // path to your route files
@@ -41,7 +42,7 @@ app.get("/mynfts", getUserNFTs);
 app.post("/buy/:tokenid", buy);
 app.post("/register", registerUser);
 app.post("/login", POST);
-app.post("/creatNft",  createNft);
+app.post("/creatNft", createNft);
 
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
