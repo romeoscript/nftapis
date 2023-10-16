@@ -6,9 +6,48 @@ import { authenticateUser } from "../middleware/auth.js";
 const db = new PrismaClient();
 
 dotenv.config;
+
+/**
+ * @swagger
+ * /buy/{tokenid}:
+ *   post:
+ *     tags:
+ *       - NFT
+ *     description: Buy an NFT based on token ID
+ *     parameters:
+ *       - in: path
+ *         name: tokenid
+ *         required: true
+ *         description: ID of the NFT token to buy
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Successfully bought the NFT and returns the uploaded NFT data
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 name:
+ *                   type: string
+ *                 image:
+ *                   type: string
+ *                 description:
+ *                   type: string
+ *                 blockchain:
+ *                   type: string
+ *                 userId:
+ *                   type: string
+ *       400:
+ *         description: Bad request - Token ID is required
+ *       404:
+ *         description: NFT not found
+ *       500:
+ *         description: Internal Server Error
+ */
 export async function buy(req, res) {
-   
-  const tokenId = req.params.tokenid; // Assuming token ID is passed as a query parameter
+  const tokenId = req.params.tokenid;
 
   if (!tokenId) {
     return res.status(400).json({ message: "Token ID is required" });
@@ -22,21 +61,18 @@ export async function buy(req, res) {
       return res.status(404).json({ message: "NFT not found" });
     }
 
-    // Extract relevant properties from the found NFT
     const { name, image, description, blockchain } = nftData1;
 
-    // Upload the NFT using the provided method
     const nftpost = await db.nftpost.create({
       data: {
         name,
-        image, // Assuming the image URL from nftData is directly usable
+        image,
         description,
         blockchain,
-        userId: req.user.userId, // Assuming req.user.userId is available and correct
+        userId: req.user.userId,
       },
     });
 
-    // Return the uploaded NFT data
     return res.status(200).json(nftpost);
   } catch (error) {
     let errorMessage = "Internal Server Error";
