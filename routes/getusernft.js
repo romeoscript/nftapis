@@ -12,7 +12,7 @@ const db = new PrismaClient();
  *       scheme: bearer
  *       bearerFormat: JWT
  *
- * /getUserNFTs:
+ * /mynfts:
  *   get:
  *     tags:
  *       - User NFTs
