@@ -26,6 +26,44 @@ async function sendMail(subject, to, htmlContent) {
   return transporter.sendMail(mailOptions);
 }
 
+/**
+ * @swagger
+ * /register:  
+ *   post:
+ *     summary: Register a new user.
+ *     tags: 
+ *         - Authentication
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               email:
+ *                 type: string
+ *                 description: The email of the user.
+ *               username:
+ *                 type: string
+ *                 description: The username of the user.
+ *               password:
+ *                 type: string
+ *                 description: The password of the user.
+ *             required:
+ *               - email
+ *               - username
+ *               - password
+ *     responses:
+ *       201:
+ *         description: User registered successfully.
+ *       400:
+ *         description: Missing or invalid input.
+ *       409:
+ *         description: User with the same email or username already exists.
+ *       500:
+ *         description: Internal server error.
+ */
+
 export async function registerUser(req, res) {
   try {
     const { email, username, password } = req.body;
