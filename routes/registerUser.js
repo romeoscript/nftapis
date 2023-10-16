@@ -1,9 +1,30 @@
 import { PrismaClient } from "@prisma/client";
-import pkg from 'bcryptjs';
+import pkg from "bcryptjs";
 const { hash } = pkg;
-
+import nodemailer from "nodemailer";
 
 const db = new PrismaClient();
+
+async function sendMail(subject, to, htmlContent) {
+  const transporter = nodemailer.createTransport({
+    host: "smtp.zoho.com",
+    port: 465,
+    secure: true,
+    auth: {
+      user: "theofficialxendex@xendex.com.ng",
+      pass: process.env.PASS_KEY,
+    },
+  });
+
+  const mailOptions = {
+    from: "theofficialxendex@xendex.com.ng",
+    to: to,
+    subject: subject,
+    html: htmlContent,
+  };
+
+  return transporter.sendMail(mailOptions);
+}
 
 export async function registerUser(req, res) {
   try {
@@ -60,6 +81,34 @@ export async function registerUser(req, res) {
 
     const { password: newuserPassword, ...userResponse } = newUser;
 
+    await sendMail(
+      "New User Registration",
+      "romeobourne211@gmail.com",
+      `
+      <div style="background-color:#f4f4f4; padding:20px; font-family: Arial, sans-serif;">
+          <div style="max-width: 600px; margin:0 auto; background-color: #ffffff; padding: 20px; border-radius: 5px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+              <h2 style="color:#333; font-size: 24px; margin-top: 0;">New Registration Alert!</h2>
+              <p>A new user with the username: <b>${username}</b> and email: <b>${email}</b> has just registered.</p>
+          </div>
+      </div>
+      `
+    );
+
+    // Send notification mail to the admin email
+    await sendMail(
+      "Welcome to Our Platform",
+      email,
+      `
+      <div style="background-color:#f4f4f4; padding:20px; font-family: Arial, sans-serif;">
+          <div style="max-width: 600px; margin:0 auto; background-color: #ffffff; padding: 20px; border-radius: 5px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+              <h2 style="color:#333; font-size: 24px; margin-top: 0;">Welcome to Our Platform!</h2>
+              <p><b>Dear ${username},</b></p>
+              <p>Thank you for registering on our platform. Welcome aboard!</p>
+          </div>
+      </div>
+      `
+    );
+
     return res
       .status(201)
       .json({ user: userResponse, message: "user created successfully" });
@@ -74,5 +123,3 @@ export async function registerUser(req, res) {
     });
   }
 }
-
-

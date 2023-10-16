@@ -3,11 +3,51 @@ import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 import pkg from 'bcryptjs';
 
-
 const { compare } = pkg;
 const db = new PrismaClient();
+
 // Load environment variables
 dotenv.config();
+
+/**
+ * @swagger
+ * /login:
+ *   post:
+ *     tags:
+ *       - Authentication
+ *     description: Authenticate user and return JWT token
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               email:
+ *                 type: string
+ *                 required: true
+ *                 example: user@example.com
+ *               password:
+ *                 type: string
+ *                 required: true
+ *                 example: password123
+ *     responses:
+ *       200:
+ *         description: Successfully authenticated
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 token:
+ *                   type: string
+ *                 message:
+ *                   type: string
+ *       401:
+ *         description: Invalid email or password
+ *       500:
+ *         description: Internal Server Error
+ */
 
 export async function POST(req, res) {
   try {
