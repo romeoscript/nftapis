@@ -25,7 +25,7 @@ const swaggerOptions = {
       {
         url: "http://localhost:5000",
       },
-      { url: "https://nftapis.onrender.com/" },
+      { url: "https://nftapis.onrender.com" },
     ],
   },
   apis: ["./routes/*.js"], // path to your route files
