@@ -12,6 +12,7 @@ import { POST } from "./routes/loginUser.js";
 import { createNft } from "./routes/CreateNft.js";
 import { getUserNFTs } from "./routes/getusernft.js";
 import { buy } from "./routes/Buy.js";
+import { createStripeSession } from "./routes/stripePayment.js";
 
 const swaggerOptions = {
   definition: {
@@ -43,6 +44,7 @@ app.post("/buy/:tokenid", buy);
 app.post("/register", registerUser);
 app.post("/login", POST);
 app.post("/creatNft", createNft);
+app.post("/create-stripe-session", createStripeSession);
 
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
