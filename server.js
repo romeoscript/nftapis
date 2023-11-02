@@ -13,6 +13,7 @@ import { createNft } from "./routes/CreateNft.js";
 import { getUserNFTs } from "./routes/getusernft.js";
 import { buy } from "./routes/Buy.js";
 import { createStripeSession } from "./routes/stripePayment.js";
+import { getNFT } from "./routes/particularnft.js";
 
 const swaggerOptions = {
   definition: {
@@ -41,6 +42,7 @@ app.use(cors());
 app.get("/nft", getNFTs);
 app.get("/mynfts", getUserNFTs);
 app.post("/buy/:tokenid", buy);
+app.get("/nft/:tokenid", getNFT);
 app.post("/register", registerUser);
 app.post("/login", POST);
 app.post("/creatNft", createNft);
