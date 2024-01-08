@@ -20,7 +20,7 @@ const createStripeSession = async (req, res) => {
       price_data: {
         currency: 'usd',
         product_data: {
-          name: 'Test Product',
+          name: 'Youtube Links',
         },
         unit_amount: amount,
       },
