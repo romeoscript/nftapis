@@ -37,7 +37,7 @@ const swaggerDocs = swaggerJsDoc(swaggerOptions);
 
 // Use CORS with options
 app.use(cors({
-  origin: "*", // Allow all origins
+  origin: ["https://www.promoteclips.com", "http://localhost:5000", "https://nftapis.onrender.com"], // Specify allowed origins
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   credentials: true, // Allow cookies
   allowedHeaders: "Content-Type,Authorization"
