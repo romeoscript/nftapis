@@ -4,7 +4,7 @@ import swaggerJsDoc from "swagger-jsdoc";
 import swaggerUi from "swagger-ui-express";
 
 const app = express();
-const PORT = 5000;
+const PORT = 5001;
 import { buy } from "./routes/Buy.js";
 import { createNft } from "./routes/CreateNft.js";
 import { getUserNFTs } from "./routes/getusernft.js";
@@ -13,6 +13,7 @@ import { getNFTs } from "./routes/nft.js";
 import { registerUser } from "./routes/registerUser.js";
 import { getNFT } from "./routes/particularnft.js";
 import { POST as loginUser } from "./routes/loginUser.js";
+import { getNearbyMechanics } from "./routes/registermech.js";
 // Import youroute handlers
 // import { getNFTs, registerUser, loginUser, createNft, getUserNFTs, buy, createStripeSession, getNFT } from "./routes";
 
@@ -61,6 +62,7 @@ app.post("/register", registerUser);
 app.post("/login", loginUser);
 app.post("/creatNft", createNft);
 app.post("/create-stripe-session", createStripeSession);
+app.get("/mechanics", getNearbyMechanics);
 
 // Start the server
 app.listen(PORT, () => {
