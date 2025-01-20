@@ -29,7 +29,7 @@ model Nftpost {
   updatedAt   DateTime @updatedAt
 }
 
-model Mechanic {
+model mechanic {
   id          Int      @id @default(autoincrement())
   shopName    String   
   ownerName   String
@@ -41,4 +41,27 @@ model Mechanic {
   longitude   Float
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+}
+
+
+model WalletUser {
+  id          Int       @id @default(autoincrement())
+  address     String    @unique  // Solana wallet address
+  purchases   Purchase[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model Purchase {
+  id          Int        @id @default(autoincrement())
+  title       String
+  price       Float
+  description String
+  category    String
+  image       String?
+  walletId    Int
+  wallet      WalletUser @relation(fields: [walletId], references: [id])
+  txHash      String?    // Solana transaction hash
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
 }

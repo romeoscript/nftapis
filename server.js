@@ -14,8 +14,6 @@ import { registerUser } from "./routes/registerUser.js";
 import { getNFT } from "./routes/particularnft.js";
 import { POST as loginUser } from "./routes/loginUser.js";
 import { getNearbyMechanics } from "./routes/registermech.js";
-// Import youroute handlers
-// import { getNFTs, registerUser, loginUser, createNft, getUserNFTs, buy, createStripeSession, getNFT } from "./routes";
 
 // Swagger configuration
 const swaggerOptions = {
@@ -31,21 +29,21 @@ const swaggerOptions = {
       { url: "https://nftapis.onrender.com" }
     ]
   },
-  apis: ["./routes/*.js"] // path to your route files
+  apis: ["./routes/*.js"]
 };
 
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
 
-// Use CORS with options
+// CORS configuration - Allow all origins
 app.use(cors({
-  origin: ["https://www.promoteclips.com", "http://localhost:5000", "https://nftapis.onrender.com"], // Specify allowed origins
-  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-  credentials: true, // Allow cookies
-  allowedHeaders: "Content-Type,Authorization"
+  origin: '*', // Allow all origins
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept'],
+  credentials: false // Set to false when using '*' for origin
 }));
 
-// Enable pre-flight across-the-board
-app.options('*', cors()); // include before other routes
+// Enable pre-flight requests for all routes
+app.options('*', cors());
 
 // Swagger UI setup
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
