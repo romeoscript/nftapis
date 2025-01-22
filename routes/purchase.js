@@ -1,63 +1,19 @@
 import { PrismaClient } from "@prisma/client";
-
 const db = new PrismaClient();
 
-/**
- * @swagger
- * /purchases:  
- *   post:
- *     summary: Record a new purchase for a wallet.
- *     tags: 
- *         - Purchases
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             properties:
- *               walletId:
- *                 type: number
- *                 description: The ID of the wallet making the purchase.
- *               title:
- *                 type: string
- *                 description: The title of the purchased item.
- *               price:
- *                 type: number
- *                 description: The price of the item.
- *               description:
- *                 type: string
- *                 description: Description of the purchased item.
- *               category:
- *                 type: string
- *                 description: Category of the purchased item.
- *               image:
- *                 type: string
- *                 description: URL of the item image.
- *               txHash:
- *                 type: string
- *                 description: Solana transaction hash.
- *             required:
- *               - walletId
- *               - title
- *               - price
- *               - description
- *               - category
- *     responses:
- *       201:
- *         description: Purchase recorded successfully.
- *       400:
- *         description: Missing or invalid input.
- *       404:
- *         description: Wallet not found.
- *       500:
- *         description: Internal server error.
- */
+class PurchaseError extends Error {
+  constructor(message, statusCode, details) {
+    super(message);
+    this.name = 'PurchaseError';
+    this.statusCode = statusCode;
+    this.details = details;
+  }
+}
 
 export async function createPurchase(req, res) {
   try {
     const { 
-      walletId,
+      address,
       title,
       price,
       description,
@@ -66,35 +22,49 @@ export async function createPurchase(req, res) {
       txHash 
     } = req.body;
 
+    // Validate transaction hash
+    if (!txHash || typeof txHash !== 'string') {
+      throw new PurchaseError(
+        "Invalid transaction hash", 
+        400, 
+        { reason: "Transaction hash must be a string", received: typeof txHash }
+      );
+    }
+
     // Validate required fields
-    if (!walletId || !title || !price || !description || !category) {
-      return res.status(400).json({ 
-        message: "Missing required fields. WalletId, title, price, description, and category are required." 
-      });
+    const validationErrors = [];
+
+    // if (!walletId) validationErrors.push("Wallet ID is required");
+    if (!title) validationErrors.push("Title is required");
+    if (!price) validationErrors.push("Price is required");
+    if (!description) validationErrors.push("Description is required");
+    if (!category) validationErrors.push("Category is required");
+
+    if (validationErrors.length > 0) {
+      throw new PurchaseError(
+        "Validation failed", 
+        400, 
+        { errors: validationErrors }
+      );
     }
 
-    // Validate price
-    if (price <= 0) {
-      return res.status(400).json({ 
-        message: "Price must be greater than 0" 
-      });
-    }
-
-    // Check if wallet exists
-    const wallet = await db.walletUser.findUnique({
-      where: { id: walletId },
+    // Check for duplicate transaction
+    const existingPurchase = await db.purchase.findFirst({
+      where: { txHash }
     });
 
-    if (!wallet) {
-      return res.status(404).json({
-        message: "Wallet not found"
-      });
+    if (existingPurchase) {
+      throw new PurchaseError(
+        "Duplicate transaction", 
+        409, 
+        { txHash }
+      );
     }
 
     // Create purchase record
     const purchase = await db.purchase.create({
       data: {
-        walletId,
+        address,
         title,
         price,
         description,
@@ -105,18 +75,24 @@ export async function createPurchase(req, res) {
     });
 
     return res.status(201).json({
-      purchase,
-      message: "Purchase recorded successfully"
+      success: true,
+      message: "Purchase recorded successfully",
+      data: purchase
     });
 
   } catch (error) {
-    let errorMessage = "Internal Server Error";
-    if (error instanceof Error) {
-      errorMessage = error.message;
+    if (error instanceof PurchaseError) {
+      return res.status(error.statusCode).json({
+        success: false,
+        message: error.message,
+        details: error.details
+      });
     }
+
     return res.status(500).json({
-      message: errorMessage,
-      details: error instanceof Error ? error.message : error,
+      success: false,
+      message: "An unexpected error occurred",
+      error: error.message
     });
   }
 }

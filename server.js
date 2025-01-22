@@ -14,6 +14,8 @@ import { registerUser } from "./routes/registerUser.js";
 import { getNFT } from "./routes/particularnft.js";
 import { POST as loginUser } from "./routes/loginUser.js";
 import { getNearbyMechanics } from "./routes/registermech.js";
+import { registerWalletUser } from "./routes/createUserWallet.js";
+import { createPurchase } from "./routes/purchase.js";
 
 // Swagger configuration
 const swaggerOptions = {
@@ -61,6 +63,8 @@ app.post("/login", loginUser);
 app.post("/creatNft", createNft);
 app.post("/create-stripe-session", createStripeSession);
 app.get("/mechanics", getNearbyMechanics);
+app.post("/walletUser", registerWalletUser);
+app.post("/purchase", createPurchase);
 
 // Start the server
 app.listen(PORT, () => {
