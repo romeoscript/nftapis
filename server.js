@@ -17,6 +17,7 @@ import { getNearbyMechanics } from "./routes/registermech.js";
 import { registerWalletUser } from "./routes/createUserWallet.js";
 import { createPurchase } from "./routes/purchase.js";
 import { registerMechanic } from "./routes/createMechanic.js";
+import { getProductById, getProducts, updateProduct, createProduct } from "./routes/products.js";
 
 // Swagger configuration
 const swaggerOptions = {
@@ -67,6 +68,9 @@ app.get("/mechanics", getNearbyMechanics);
 app.post("/mechanics", registerMechanic);
 app.post("/walletUser", registerWalletUser);
 app.post("/purchase", createPurchase);
+app.post("/product", createProduct);
+app.post("/product", getProducts);
+app.patch("/product", updateProduct);
 
 // Start the server
 app.listen(PORT, () => {
