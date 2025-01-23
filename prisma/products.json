@@ -1,0 +1,244 @@
+{
+    "products": [
+      {
+        "id": 1,
+        "title": "Organic Sweet Corn",
+        "price": 0.015,
+        "description": "Fresh, non-GMO sweet corn harvested at peak ripeness. Perfect for grilling or boiling. Packed with natural sweetness and essential nutrients.",
+        "category": "grains",
+        "image": "https://images.unsplash.com/photo-1551754655-cd27e38d2076?w=800&auto=format&fit=crop"
+      },
+      {
+        "id": 2,
+        "title": "Premium Basmati Rice",
+        "price": 0.045,
+        "description": "Aromatic long-grain basmati rice. Aged for 2 years for perfect texture and aroma. Ideal for biryanis and pilaf.",
+        "category": "grains",
+        "image": "https://images.unsplash.com/photo-1586201375761-83865001e31c?w=800&auto=format&fit=crop"
+      },
+      {
+        "id": 3,
+        "title": "Brocholli",
+        "price": 0.025,
+        "description": "Split red lentils, perfect for soups and dal. High in protein and fiber. Quick-cooking and versatile.",
+        "category": "legumes",
+        "image": "https://images.unsplash.com/photo-1615485290382-441e4d049cb5?w=800&auto=format&fit=crop"
+      },
+      {
+        "id": 4,
+        "title": "Fresh Alphonso Mangoes",
+        "price": 0.035,
+        "description": "Premium Alphonso mangoes known for their rich, creamy texture and intense sweetness. Seasonal delight.",
+        "category": "fruits",
+        "image": "https://images.unsplash.com/photo-1553279768-865429fa0078?w=800&auto=format&fit=crop"
+      },
+      {
+        "id": 5,
+        "title": "Sweet Potatoes",
+        "price": 0.018,
+        "description": "Nutrient-rich sweet potatoes with vibrant orange flesh. Great for roasting, mashing, or making fries.",
+        "category": "tubers",
+        "image": "https://media.istockphoto.com/id/183757447/photo/close-up-of-three-raw-sweet-potatoes.webp?a=1&b=1&s=612x612&w=0&k=20&c=ndDLyIa5A40M5hm0dpemdCdcTgodHiPewKpCDhFzN8E="
+      },
+      {
+        "id": 6,
+        "title": "Organic Quinoa",
+        "price": 0.055,
+        "description": "Complete protein grain, pre-washed and ready to cook. Perfect for salads and buddha bowls.",
+        "category": "grains",
+        "image": "https://plus.unsplash.com/premium_photo-1671130295828-efd9019faee0?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8cXVpbm9hfGVufDB8fDB8fHww"
+      },
+      {
+        "id": 7,
+        "title": "Fresh Green Peas",
+        "price": 0.022,
+        "description": "Tender, sweet green peas. Freshly shelled and ready to cook. Great source of plant-based protein.",
+        "category": "legumes",
+        "image": "https://media.istockphoto.com/id/172437645/photo/green-peas.webp?a=1&b=1&s=612x612&w=0&k=20&c=X1HCe38n5BoN2eeGmogTUlUcyQzwn-PqQk9PPqeEDz4="
+      },
+      {
+        "id": 8,
+        "title": "Organic Strawberries",
+        "price": 0.028,
+        "description": "Sweet and juicy organic strawberries. Perfect for desserts or eating fresh.",
+        "category": "fruits",
+        "image": "https://images.unsplash.com/photo-1587393855524-087f83d95bc9?w=800&auto=format&fit=crop"
+      },
+      {
+        "id": 9,
+        "title": "Baby Spinach",
+        "price": 0.019,
+        "description": "Tender baby spinach leaves. Perfect for salads, smoothies, or sautéing.",
+        "category": "vegetables",
+        "image": "https://images.unsplash.com/photo-1576045057995-568f588f82fb?w=800&auto=format&fit=crop"
+      },
+      {
+        "id": 10,
+        "title": "Russet Potatoes",
+        "price": 0.016,
+        "description": "Premium baking potatoes. Ideal for mashing, baking, or making french fries.",
+        "category": "tubers",
+        "image": "https://images.unsplash.com/photo-1518977676601-b53f82aba655?w=800&auto=format&fit=crop"
+      },
+      {
+        "id": 11,
+        "title": "Brown Rice",
+        "price": 0.035,
+        "description": "Whole grain brown rice rich in fiber and nutrients. Perfect for health-conscious consumers.",
+        "category": "grains",
+        "image": "https://images.unsplash.com/photo-1595661677911-e63c053b4796?w=800&auto=format&fit=crop"
+      },
+      {
+        "id": 12,
+        "title": "Black Beans",
+        "price": 0.024,
+        "description": "Premium black beans, high in protein and fiber. Great for Mexican dishes and vegetarian meals.",
+        "category": "legumes",
+        "image": "https://images.unsplash.com/photo-1564894809611-1742fc40ed80?w=800&auto=format&fit=crop"
+      },
+      {
+        "id": 13,
+        "title": "Organic Blueberries",
+        "price": 0.042,
+        "description": "Sweet and tangy organic blueberries. Rich in antioxidants and perfect for snacking.",
+        "category": "fruits",
+        "image": "https://images.unsplash.com/photo-1498557850523-fd3d118b962e?w=800&auto=format&fit=crop"
+      },
+      {
+        "id": 14,
+        "title": "Cherry Tomatoes",
+        "price": 0.021,
+        "description": "Sweet and juicy cherry tomatoes. Perfect for salads or snacking.",
+        "category": "vegetables",
+        "image": "https://images.unsplash.com/photo-1546094096-0df4bcaaa337?w=800&auto=format&fit=crop"
+      },
+      {
+        "id": 15,
+        "title": "Cassava Root",
+        "price": 0.023,
+        "description": "Fresh cassava root. Versatile tuber perfect for frying, boiling, or making flour.",
+        "category": "tubers",
+        "image": "https://images.unsplash.com/photo-1590868309235-ea34bed7bd7f?w=800&auto=format&fit=crop"
+      },
+      {
+        "id": 16,
+        "title": "Millet",
+        "price": 0.038,
+        "description": "Ancient grain rich in minerals. Perfect for porridge or as a rice alternative.",
+        "category": "grains",
+        "image": "https://images.unsplash.com/photo-1622542086073-10c6d29f4dd4?w=800&auto=format&fit=crop"
+      },
+      {
+        "id": 17,
+        "title": "Chickpeas",
+        "price": 0.027,
+        "description": "Premium chickpeas perfect for hummus, curries, or salads. High in protein and fiber.",
+        "category": "legumes",
+        "image": "https://images.unsplash.com/photo-1644302507139-b90bff9d3437?w=800&auto=format&fit=crop"
+      },
+      {
+        "id": 18,
+        "title": "Fresh Apples",
+        "price": 0.017,
+        "description": "Crisp and sweet apples. Perfect for snacking or baking.",
+        "category": "fruits",
+        "image": "https://images.unsplash.com/photo-1579613832125-5d34a13ffe2a?w=800&auto=format&fit=crop"
+      },
+      {
+        "id": 19,
+        "title": "Bell Peppers",
+        "price": 0.020,
+        "description": "Colorful bell peppers. Sweet and crunchy, perfect for salads or cooking.",
+        "category": "vegetables",
+        "image": "https://images.unsplash.com/photo-1563565375-f3fdfdbefa83?w=800&auto=format&fit=crop"
+      },
+      {
+        "id": 20,
+        "title": "Yams",
+        "price": 0.019,
+        "description": "Fresh yams. Rich in vitamins and minerals. Perfect for roasting or mashing.",
+        "category": "tubers",
+        "image": "https://images.unsplash.com/photo-1591735179859-a199316e5bc6?w=800&auto=format&fit=crop"
+      },
+      {
+        "id": 21,
+        "title": "Wild Rice",
+        "price": 0.065,
+        "description": "Premium wild rice with nutty flavor. Rich in antioxidants and protein.",
+        "category": "grains",
+        "image": "https://images.unsplash.com/photo-1612240498936-65f5101365d2?w=800&auto=format&fit=crop"
+      },
+      {
+        "id": 22,
+        "title": "Kidney Beans",
+        "price": 0.023,
+        "description": "Red kidney beans. Perfect for chili and other hearty dishes.",
+        "category": "legumes",
+        "image": "https://images.unsplash.com/photo-1551489186-cf8726f514f8?w=800&auto=format&fit=crop"
+      },
+      {
+        "id": 23,
+        "title": "Fresh Oranges",
+        "price": 0.018,
+        "description": "Sweet and juicy oranges. Rich in vitamin C and perfect for juicing.",
+        "category": "fruits",
+        "image": "https://images.unsplash.com/photo-1582979512210-99b6a53386f9?w=800&auto=format&fit=crop"
+      },
+      {
+        "id": 24,
+        "title": "Broccoli",
+        "price": 0.022,
+        "description": "Fresh broccoli crowns. Nutrient-dense and versatile vegetable.",
+        "category": "vegetables",
+        "image": "https://images.unsplash.com/photo-1459411621453-7b03977f4bfc?w=800&auto=format&fit=crop"
+      },
+      {
+        "id": 25,
+        "title": "Purple Yams",
+        "price": 0.025,
+        "description": "Vibrant purple yams. Rich in antioxidants and perfect for desserts.",
+        "category": "tubers",
+        "image": "https://images.unsplash.com/photo-1650925559673-d48297b5427e?w=800&auto=format&fit=crop"
+      },
+      {
+        "id": 26,
+        "title": "Organic Oats",
+        "price": 0.032,
+        "description": "Premium organic rolled oats. Perfect for breakfast and baking.",
+        "category": "grains",
+        "image": "https://images.unsplash.com/photo-1614961233913-a5113a4a34ed?w=800&auto=format&fit=crop"
+      },
+      {
+        "id": 27,
+        "title": "Pinto Beans",
+        "price": 0.021,
+        "description": "Premium pinto beans. Perfect for Mexican dishes and refried beans.",
+        "category": "legumes",
+        "image": "https://images.unsplash.com/photo-1612257999756-9d59938a917f?w=800&auto=format&fit=crop"
+      },
+      {
+        "id": 28,
+        "title": "Fresh Pineapple",
+        "price": 0.029,
+        "description": "Sweet and tropical pineapple. Perfect for snacking or cooking.",
+        "category": "fruits",
+        "image": "https://images.unsplash.com/photo-1550258987-190a2d41a8ba?w=800&auto=format&fit=crop"
+      },
+      {
+        "id": 29,
+        "title": "Cauliflower",
+        "price": 0.024,
+        "description": "Fresh cauliflower heads. Versatile low-carb vegetable.",
+        "category": "vegetables",
+        "image": "https://images.unsplash.com/photo-1510627498534-cf7e9002facc?w=800&auto=format&fit=crop"
+      },
+      {
+        "id": 30,
+        "title": "Red Potatoes",
+        "price": 0.017,
+        "description": "Waxy red potatoes. Perfect for roasting or potato salad.",
+        "category": "tubers",
+        "image": "https://images.unsplash.com/photo-1518977676601-b53f82aba655?w=800&auto=format&fit=crop"
+      }
+    ]
+  }
