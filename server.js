@@ -69,7 +69,7 @@ app.post("/mechanics", registerMechanic);
 app.post("/walletUser", registerWalletUser);
 app.post("/purchase", createPurchase);
 app.post("/product", createProduct);
-app.post("/product", getProducts);
+app.get("/products", getProducts);
 app.patch("/product", updateProduct);
 
 // Start the server

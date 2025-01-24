@@ -1,4 +1,6 @@
-// Get all products
+import { PrismaClient } from "@prisma/client";
+
+const db = new PrismaClient();
 export async function getProducts(req, res) {
     try {
       const products = await db.product.findMany();
@@ -36,6 +38,7 @@ export async function getProducts(req, res) {
    export async function createProduct(req, res) {
     try {
       const { title, price, description, category, image } = req.body;
+     
    
       const product = await db.product.create({
         data: { title, price, description, category, image }
