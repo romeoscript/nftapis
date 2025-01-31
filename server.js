@@ -5,19 +5,11 @@ import swaggerUi from "swagger-ui-express";
 
 const app = express();
 const PORT = 5001;
-import { buy } from "./routes/Buy.js";
-import { createNft } from "./routes/CreateNft.js";
-import { getUserNFTs } from "./routes/getusernft.js";
-import { createStripeSession } from "./routes/stripePayment.js";
-import { getNFTs } from "./routes/nft.js";
-import { registerUser } from "./routes/registerUser.js";
-import { getNFT } from "./routes/particularnft.js";
-import { POST as loginUser } from "./routes/loginUser.js";
+
 import { getNearbyMechanics } from "./routes/registermech.js";
-import { registerWalletUser } from "./routes/createUserWallet.js";
-import { createPurchase } from "./routes/purchase.js";
+
 import { registerMechanic } from "./routes/createMechanic.js";
-import { getProductById, getProducts, updateProduct, createProduct } from "./routes/products.js";
+
 
 // Swagger configuration
 const swaggerOptions = {
@@ -56,21 +48,10 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 app.use(express.json());
 
 // Define your API routes
-app.get("/nft", getNFTs);
-app.get("/mynfts", getUserNFTs);
-app.post("/buy/:tokenid", buy);
-app.get("/nft/:tokenid", getNFT);
-app.post("/register", registerUser);
-app.post("/login", loginUser);
-app.post("/creatNft", createNft);
-app.post("/create-stripe-session", createStripeSession);
+
 app.get("/mechanics", getNearbyMechanics);
 app.post("/mechanics", registerMechanic);
-app.post("/walletUser", registerWalletUser);
-app.post("/purchase", createPurchase);
-app.post("/product", createProduct);
-app.get("/products", getProducts);
-app.patch("/product", updateProduct);
+
 
 // Start the server
 app.listen(PORT, () => {
